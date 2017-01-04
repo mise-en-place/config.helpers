@@ -1,0 +1,50 @@
+@import "../tools/map-deep-get-set";
+@import "../tools/parse-color";
+
+@import "../../config/base-unit.yml";
+@import "../../config/cells.yml";
+@import "../../config/grids.yml";
+@import "../../config/palettes.yml";
+@import "../../config/type.yml";
+
+@each $palette, $shades in $palettes {
+    @each $shade, $value in $shades {
+        $parsed: parse-color($value);
+        $palettes: map-deep-set($palettes, $palette $shade, $parsed);
+    }
+}
+
+@function map-get-if-exists($map, $key){
+    @if map-has-key($map, $key) {
+        @return map-get($map, $key);
+    }
+    @else {
+        @error "#{$map} has no key named '#{$key}'";
+    }
+}
+
+@function global-config($name){
+    @if $name == 'base-unit' and variable-exists('base-unit') {
+        @return map-get-if-exists($base-unit, 'unit');
+    }
+    @if $name == 'cells' and variable-exists('cells') {
+        @return $cells;
+    }
+    @if $name == 'grids' and variable-exists('grids') {
+        @return $grids;
+    }
+    @if $name == 'palettes' and variable-exists('palettes') {
+        @return $palettes;
+    }
+    @if $name == 'type' and variable-exists('type') {
+        @return $type;
+    }
+    @else {
+        @error "Variable #{$name} not found";
+        @return false;
+    }
+}
+
+@function type-config($key){
+    @return map-get-if-exists($type, $key);
+}
