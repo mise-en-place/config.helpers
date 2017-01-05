@@ -1,19 +1,14 @@
 // @TODO This needs to be dynamic
 
-@import "../tools/map-deep-get-set";
-@import "../tools/parse-color";
-@import "../../config/base-unit.yml";
-@import "../../config/cells.yml";
-@import "../../config/grids.yml";
-@import "../../config/palettes.yml";
-@import "../../config/type.yml";
+// @import "../tools/map-deep-get-set";
+// @import "../tools/parse-color";
+@import "../config/base-unit.yml";
+@import "../config/cells.yml";
+@import "../config/grids.yml";
 
-@each $palette, $shades in $palettes {
-    @each $shade, $value in $shades {
-        $parsed: parse-color($value);
-        $palettes: map-deep-set($palettes, $palette $shade, $parsed);
-    }
-}
+@import "../config/type.yml";
+
+
 
 @function map-get-if-exists($map, $key){
     @if map-has-key($map, $key) {
