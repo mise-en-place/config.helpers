@@ -1,11 +1,5 @@
 // @TODO This needs to be dynamic or moved to local file
 
-@import "../config/base-unit.yml";
-@import "../config/cells.yml";
-@import "../config/grids.yml";
-@import "../config/type.yml";
-@import "../config/palettes.yml";
-
 @function map-get-if-exists($map, $key){
     @if map-has-key($map, $key) {
         @return map-get($map, $key);
