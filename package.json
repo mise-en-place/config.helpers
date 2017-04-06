@@ -1,15 +1,9 @@
 {
   "name": "mep-config.helpers",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Config for global helpers",
   "main": "stylesheets/_helpers.scss",
-  "eyeglass": {
-    "needs": "^1.0.0",
-    "name": "helpers",
-    "exports": "eyeglass-exports.js"
-  },
   "keywords": [
-    "eyeglass-module",
     "sass",
     "mise-en-place"
   ],
